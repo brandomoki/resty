@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 import './form.scss';
 
@@ -18,14 +20,18 @@ const Form = (props) => {
         <label >
           <span>URL: </span>
           <input name='url' type='text' />
-          <button type="submit">GO!</button>
+          <Button type="submit" color='secondary' variant='contained' >GO!</Button>
         </label>
-        <label className="methods">
-          <span id="get">GET</span>
-          <span id="post">POST</span>
-          <span id="put">PUT</span>
-          <span id="delete">DELETE</span>
-        </label>
+        <ButtonGroup color='secondary' variant="contained" aria-label="outlined primary button group">
+          <Button id="get">GET</Button>
+          <Button id="post">POST</Button>
+          <Button id="put">PUT</Button>
+          <Button id="delete">DELETE</Button>
+
+          
+      
+        </ButtonGroup>
+        
       </form>
     </>
   );
