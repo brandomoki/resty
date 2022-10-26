@@ -18,7 +18,7 @@ const App = () => {
   const callApi = async (url, method) => {
 
     let formData = await axios({
-      method: method || 'GET',
+      method: method ,
       url: url,
     })
 

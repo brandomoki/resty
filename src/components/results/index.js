@@ -1,13 +1,19 @@
 import React from 'react';
 
-const Results = (props) => {
-  
-    return (
-      <section>
-        <pre>{props.data ? JSON.stringify(props.data, undefined, 2) : null}</pre>
-      </section>
-    );
-  
+import JSONPretty from 'react-json-pretty';
+import 'react-json-pretty/themes/monikai.css'
+const Results = ({ data }) => {
+  return (
+    <section data-testid='results'>
+      {data ?
+        (<>
+          <span className="results">Results
+          <JSONPretty data={data}/>
+          </span>
+        </>) :
+        (<span>.......Doing The Thing........</span>)
+      }
+    </section>
+  );
 }
-
 export default Results;
