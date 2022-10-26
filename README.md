@@ -6,7 +6,7 @@ A browser based API testing tool
 
 ## References and Credits
 
-Referenced starter code and worked alongside Luis Rosales, Tyler Main, Jun 
+Referenced starter code and worked alongside Luis Rosales, Tyler Main, Stephen Clemmer
 
 ## Business Requirements
 
