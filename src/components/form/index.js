@@ -38,10 +38,10 @@ const Form = (props) => {
         </label>
         <textarea className="text-area-box" onChange={(e) => setJSON(e.target.value)} type="text" placeholder="PUT/POST JSON here"/>
         <label className="methods">
-            <span className='spanButtons' id="get" onClick={handleMethod}>GET</span>
-            <span className='spanButtons' id="post" onClick={handleMethod}>POST</span>
-            <span className='spanButtons' id="put" onClick={handleMethod}>PUT</span>
-            <span className='spanButtons' id="delete" onClick={handleMethod}>DELETE</span>
+            <span className='spanButtons' id="GET" onClick={handleMethod}>GET</span>
+            <span className='spanButtons' id="Post" onClick={handleMethod}>POST</span>
+            <span className='spanButtons' id="PUT" onClick={handleMethod}>PUT</span>
+            <span className='spanButtons' id="DELETE" onClick={handleMethod}>DELETE</span>
         </label>
       </form>
     </>
