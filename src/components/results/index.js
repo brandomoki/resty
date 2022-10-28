@@ -8,26 +8,21 @@ const Results = (props) => {
     <section data-testid='headers'>
     {props.headers ?
       (<>
+        <span className="history">History
+        <JSONPretty data={props.history}/>
+        </span>
         <span className="headers">Headers
         <JSONPretty data={props.headers}/>
+        </span>
+        <span className="results">Results
+        <JSONPretty data={props.data}/>
         </span>
         
       </>) :
       (<span>Buffering........</span>)
     }
   </section>
-    <section data-testid='results'>
-      {props.data ?
-        (<>
-          <span className="results">Results
-          <JSONPretty data={props.data}/>
-          </span>
-          
-        </>) :
-        (<span>Buffering........</span>)
-      }
-    </section>
-
+   
   </>
   );
 }

@@ -9,7 +9,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import Form from './components/form';
 import Results from './components/results';
-import History from './components/history/history';
+
 
 
 const App = () => {
@@ -20,52 +20,49 @@ const App = () => {
     headers: null,
     history: [],
   }
-
+  
   let requestReducer = (state, action) => {
-
+    
     switch (action.type) {
-      case 'SET_REQ_PARAMS':
+      case 'SET_REQUEST_PARAMS':
         return { ...state, requestParams: action.payload };
       case 'SET_DATA':
         return { ...state, data: action.payload };
+        case 'SET_HEADERS':
+        return { ...state, headers: action.payload };
       case 'UPDATE_HISTORY':
         return { ...state, history: [...state.history, action.payload] }
       default:
         return state;
     }
   }
-  
+          
+          
   const [state, dispatch] = useReducer(requestReducer, initialState);
-
-
-  // const [requestParams, setRequestParams] = useState({});
+  console.log('this is  initial state',initialState);
 
   useEffect(() => {
     
-    const callApi = async (url, method) => {
+    const callApi = async () => {
   
-      let formData = await axios(state.requestParams);
-      let data = {
-        data: formData.data,
-        headers: formData.data
-      }
-      console.log('form',formData);
-  
-      setData(formData);
+      let responseData = await axios(state.requestParams);
       
-      updateHistory(state.requestParams, data)
-      
+      console.log('form', responseData);
+
+      setData(responseData.data);
+      setHeaders(responseData.headers);
+      updateHistory(state.requestParams, responseData.data);
       
     }
-    if (state.requestParams && state.requestParams.method) callApi();
-    
+    callApi();
 
   }, [state.requestParams])
 
-  const setRequestParams = (requestParams) => {
+  const setRequestParams = (formData) => {
+    console.log('requestParams******************', formData);
     dispatch({
-      type: 'SET_REQ_PARAMS',
-      payload: requestParams,
+      type: 'SET_REQUEST_PARAMS',
+      payload: formData,
     });
   }
 
@@ -76,24 +73,23 @@ const App = () => {
     });
   }
 
-  const updateHistory = (requestParams, data) => {
-    let reqHistory = {
-      method: requestParams.method,
-      url: requestParams.url,
-      data: data
-    }
+  const setHeaders = (headers) => {
     dispatch({
-      type: 'UPDATE_HISTORY',
-      payload: reqHistory
+      type: 'SET_HEADERS',
+      payload: headers,
     });
   }
 
-  const triggerApi = (requestParams) => {
-    setRequestParams(requestParams);
+  const updateHistory = (requestParams) => {
+    dispatch({
+      type: 'UPDATE_HISTORY',
+      payload: requestParams,
+    });
   }
 
-
-  
+  const triggerApi = (formData) => {
+    setRequestParams(formData);
+  }
 
 
   return (
@@ -101,9 +97,9 @@ const App = () => {
       <Header />
       <div>Request Method: {state.requestParams.method}</div>
       <div>URL: {state.requestParams.url ? JSON.stringify(state.requestParams.url, undefined, 2) : null}</div>
-      <History history={state.history} />
       <Form handleApiCall={triggerApi} />
-      <Results data={state.data} headers={state.headers}/>
+      
+      <Results data={state.data} headers={state.headers} history={state.history}/>
       <Footer />
     </>
   );
