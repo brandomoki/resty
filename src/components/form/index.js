@@ -9,13 +9,24 @@ const Form = (props) => {
 
   const [method, setMethod] = useState('GET');
   const [getUrl, setGetUrl] = useState('');
- 
-  let handleSubmit = e => {
-    e.preventDefault();
-    
+  const [JSON, setJSON] = useState();
 
-    props.handleApiCall(getUrl, method);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = {
+      method,
+      url: getUrl,
+      JSON,
+    };
+    props.handleApiCall(formData);
+  };
+
+  const handleMethod = (e) => {
+    setMethod(e.target.id);
+    setJSON('');
   }
+ 
+  
   
   return (
     <>
@@ -25,11 +36,12 @@ const Form = (props) => {
           <input name='url' type='text' onChange={(e) => setGetUrl(e.target.value)} />
           <button type="submit">GO!</button>
         </label>
+        <textarea className="text-area-box" onChange={(e) => setJSON(e.target.value)} type="text" placeholder="PUT/POST JSON here"/>
         <label className="methods">
-          <span id="get" onClick={() => setMethod('GET')} >GET</span>
-          <span id="post" onClick={() => setMethod('POST')}>POST</span>
-          <span id="put">PUT</span>
-          <span id="delete">DELETE</span>
+            <span className='spanButtons' id="get" onClick={handleMethod}>GET</span>
+            <span className='spanButtons' id="post" onClick={handleMethod}>POST</span>
+            <span className='spanButtons' id="put" onClick={handleMethod}>PUT</span>
+            <span className='spanButtons' id="delete" onClick={handleMethod}>DELETE</span>
         </label>
       </form>
     </>

@@ -37,6 +37,12 @@ The following user stories detail the major functionality for this phase of the 
 As a user, I want to enter the URL to an API and issue a GET request so that I can retrieve it’s data
 As a user, I want to see the results returned from an API request in my browser in a readable format
 
+## Phase-04
+
+In phase 4, we will be tracking every API call and storing it in history
+The following user stories detail the major functionality for this phase of the project.
+As a user, I want to see a list of my previous API calls, so that I can see the results again, quickly
+
 ### Wireframe
 
 ![Wireframe](./img/week6-labs.png)
