@@ -1,6 +1,7 @@
-
+import './results.scss';
 import JSONPretty from 'react-json-pretty';
-import 'react-json-pretty/themes/monikai.css'
+import 'react-json-pretty/themes/monikai.css';
+
 const Results = (props) => {
   return (
     <>
@@ -12,7 +13,7 @@ const Results = (props) => {
         </span>
         
       </>) :
-      (<span>Loading........</span>)
+      (<span>Buffering........</span>)
     }
   </section>
     <section data-testid='results'>
@@ -23,7 +24,7 @@ const Results = (props) => {
           </span>
           
         </>) :
-        (<span>Loading........</span>)
+        (<span>Buffering........</span>)
       }
     </section>
 
